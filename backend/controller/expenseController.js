@@ -1,4 +1,4 @@
-import Expense from "../models/Expense"
+import Expense from "../models/Expense.js"
 
 
 export const addExpense = async (req,res) => {
@@ -15,25 +15,36 @@ export const addExpense = async (req,res) => {
         res.status(201).json(newExpense)
 
     }catch(error){
-        res.status(500).json({ message: "Internal Server Error" })
+        res.status(500).json({ message: "Internal Server Error in add Expense" })
     }
 }
 
 export const getExpenses = async (req,res) => {
     try{
-        const expense = (await Expense.find()).toSorted({ createdAt: -1 })
+        const expense = await Expense.find().sort({ createdAt: -1 })
+
+        if(!expense){
+            return res.status(404).json({ message: "No Expense was found" })
+        }
+        
         res.status(200).json(expense)
     }catch(error){
-        res.status(500).json({message: "Internal Server Error"})
+        res.status(500).json({message: "Internal in Server Error getExpenses"})
     }
 }
 
 export const deleteExpense = async (req,res) => {
     try{
         const { id } = req.params
-        await Expense.findByIdAndDelete(id)
+
+        const deletedExpense = await Expense.findByIdAndDelete(id)
+
+        if(!deletedExpense){
+            return res.status(404).json({ message: "Expense Not found" })
+        }
+
         res.status(200).json({ message: "Expense deleted Successfully" })
     }catch(error){
-        res.status(500).jsonn({ message: "Internal Server Error" })
+        res.status(500).json({ message: "Internal Server Error in Delete Expenses" })
     }
 } 

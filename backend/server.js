@@ -4,12 +4,16 @@ import cors from 'cors'
 
 dotenv.config()
 
-import connectDB from './lib/db.js'
-
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+
+import connectDB from './lib/db.js'
+import expenseRoutes from './routes/expenseRoutes.js'
+
+
+app.use("/api/expense",expenseRoutes)
 
 const PORT = process.env.PORT || 5000
 const MONGO_URI = process.env.MONGO_URI
