@@ -19,6 +19,13 @@ export const addExpense = async (req,res) => {
     }
 }
 
-export const getExpenses = async (req,res) => {}
+export const getExpenses = async (req,res) => {
+    try{
+        const expense = (await Expense.find()).toSorted({ createdAt: -1 })
+        res.status(200).json(expense)
+    }catch(error){
+        res.status(500).json({message: "Internal Server Error"})
+    }
+}
 
 export const deleteExpense = async (req,res) => {} 
