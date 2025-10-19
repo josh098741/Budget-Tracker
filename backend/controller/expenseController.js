@@ -28,4 +28,12 @@ export const getExpenses = async (req,res) => {
     }
 }
 
-export const deleteExpense = async (req,res) => {} 
+export const deleteExpense = async (req,res) => {
+    try{
+        const { id } = req.params
+        await Expense.findByIdAndDelete(id)
+        res.status(200).json({ message: "Expense deleted Successfully" })
+    }catch(error){
+        res.status(500).jsonn({ message: "Internal Server Error" })
+    }
+} 
