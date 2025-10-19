@@ -1,27 +1,49 @@
-
+import React,{useState} from 'react'
 
 
 function AddExpense(){
+
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [amount, setAmount] = useState("")
+    const [type, setType] = useState("credit")
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+    }
 
     return(
         <div className="h-[700px] border border-slate-700">
             <div className="border flex flex-col items-center justify-center">
                 <div>Expenses And Income</div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="flex flex-col">
                         <div className="flex flex-col">
                             <label>Title</label>
-                            <input type="text" className="border border-slate-900"/>
+                            <input type="text" 
+                            className="border border-slate-900"
+                            value={title}
+                            onChange={(event) => setTitle(event.target.value)}
+                            />
                         </div>
                         
                         <div className="flex flex-col">
                             <label>Description</label>
-                            <textarea className="border border-slate-900" />
+                            <textarea 
+                            className="border border-slate-900"
+                            value={description} 
+                            onChange={(event) => setDescription(event.target.value)}
+                            />
                         </div>
                         
                         <div className="flex flex-col">
                             <label>Money</label>
-                            <input type="number" className="border border-slate-900 h-10 w-96 outline-none" />
+                            <input 
+                            type="number" 
+                            className="border border-slate-900 h-10 w-96 outline-none" 
+                            value={amount} 
+                            onChange={(event) => setAmount(event.target.value)} 
+                            />
                         </div>
                         
                         <div className="flex justify-center items-center gap-5 text-center">
@@ -40,8 +62,9 @@ function AddExpense(){
                             </div>
                         </div>
                         
-                        
-                        
+                        <div className="flex items-center justify-center">
+                            <button className="border w-32 h-10" type="submit">Submit</button>
+                        </div>
                         
                     </div>
                     <div></div>
