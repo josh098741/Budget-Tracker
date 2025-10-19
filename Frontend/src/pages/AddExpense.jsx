@@ -17,15 +17,15 @@ function AddExpense(){
 
     return(
         <div className="h-[700px] border border-slate-700">
-            <div className="border flex flex-col items-center justify-center">
-                <div>Expenses And Income</div>
+            <div className="border gap-10 flex flex-col items-center h-[700px] justify-center">
+                <div className="text-xl">Expenses And Income</div>
                 <form onSubmit={handleSubmit}>
                     <div className="flex flex-col">
                         <div className="flex flex-col">
                             <label>Title</label>
                             <input type="text" 
                             className="border border-slate-900"
-                            value={title}
+                            value={title} 
                             onChange={(event) => setTitle(event.target.value)}
                             />
                         </div>
