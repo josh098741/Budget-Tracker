@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import toast from 'react-hot-toast'
 
 function AddExpense(){
 
@@ -10,6 +10,9 @@ function AddExpense(){
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        if(!title || !description || !amount){
+            toast.error("All Fields Must Be Filled")
+        }
     }
 
     return(
