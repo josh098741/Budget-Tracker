@@ -7,7 +7,7 @@ import EditExpense from './pages/EditExpense'
 function App() {
 
   return(
-    <div>
+    <div className="min-h-screen">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
