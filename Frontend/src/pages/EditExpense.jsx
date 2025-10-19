@@ -3,7 +3,7 @@
 function EditExpense(){
 
     return(
-        <div></div>
+        <div>Edit Expense</div>
     );
 }
 

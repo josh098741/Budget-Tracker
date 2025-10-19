@@ -4,7 +4,7 @@
 function AddExpense(){
 
     return(
-        <div></div>
+        <div>Add Expense</div>
     );
 }
 
