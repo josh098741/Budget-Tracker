@@ -49,14 +49,22 @@ function AddExpense(){
                         <div className="flex justify-center items-center gap-5 text-center">
                             <div className="inline-block">
                                 <label>
-                                    <input type="radio"/>
+                                    <input 
+                                    checked={type === "credit"} 
+                                    type="radio"
+                                    onChange={() => setType("credit")}
+                                    />
                                     credit
                                 </label>
                             </div>
 
                             <div className="inline-block">
                                 <label>
-                                    <input type="radio" />
+                                    <input 
+                                    type="radio" 
+                                    checked={type === "debit"}
+                                    onChange={() => setType("debit")}
+                                    />
                                     debit
                                 </label>
                             </div>
