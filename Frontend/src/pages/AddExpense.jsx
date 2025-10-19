@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import toast from 'react-hot-toast'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function AddExpense(){
 
@@ -7,11 +9,31 @@ function AddExpense(){
     const [description, setDescription] = useState("")
     const [amount, setAmount] = useState("")
     const [type, setType] = useState("credit")
+    const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (event) => {
+    const navigate = useNavigate()
+
+    const handleSubmit = async (event) => {
         event.preventDefault()
         if(!title || !description || !amount){
             toast.error("All Fields Must Be Filled")
+        }
+        try{
+            setLoading(true)
+            await axios.post("http://localhost:5000/api/expense",{
+                title,description,amount,type
+            })
+            setTitle("")
+            setDescription("")
+            setAmount("")
+            setType("credit")
+            toast.success("Expense successfully Added to the database")
+            navigate("/")
+        }catch(error){
+            console.error("Error  in updating content",error)
+            toast.error("Error in persisting Data to the database")
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -24,7 +46,7 @@ function AddExpense(){
                         <div className="flex flex-col">
                             <label>Title</label>
                             <input type="text" 
-                            className="border border-slate-900"
+                            className="border outline-none border-slate-900 pl-5"
                             value={title} 
                             onChange={(event) => setTitle(event.target.value)}
                             />
@@ -33,7 +55,7 @@ function AddExpense(){
                         <div className="flex flex-col">
                             <label>Description</label>
                             <textarea 
-                            className="border border-slate-900"
+                            className="border outline-none border-slate-900 pl-5"
                             value={description} 
                             onChange={(event) => setDescription(event.target.value)}
                             />
@@ -43,7 +65,7 @@ function AddExpense(){
                             <label>Money</label>
                             <input 
                             type="number" 
-                            className="border border-slate-900 h-10 w-96 outline-none" 
+                            className="border border-slate-900 h-10 w-96 outline-none pl-5" 
                             value={amount} 
                             onChange={(event) => setAmount(event.target.value)} 
                             />
@@ -74,7 +96,9 @@ function AddExpense(){
                         </div>
                         
                         <div className="flex items-center justify-center">
-                            <button className="border w-32 h-10" type="submit">Submit</button>
+                            <button disabled={loading} className="flex items-center justify-center border w-60 border-slate-900 h-10" type="submit">
+                                {loading ? <div className="border-2 w-9 h-9 rounded-full border-l-blue-500 animate-spin"></div> : "Submit"}
+                            </button>
                         </div>
                         
                     </div>

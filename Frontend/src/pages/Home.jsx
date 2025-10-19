@@ -63,7 +63,7 @@ function Home(){
                                     <div><p>{item.description}</p></div>
                                     <div className="flex justify-between">
                                         <button  onClick={() => handleDelete(item._id)}><Trash className="hover:text-red-500 transition-all" /></button>
-                                        <Link>
+                                        <Link to={`/edit/${item._id}`}>
                                             <button><Edit className="hover:text-green-500 transition-all" /></button>
                                         </Link>
                                     </div>
