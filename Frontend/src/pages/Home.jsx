@@ -3,7 +3,7 @@ import React,{ useState,useEffect } from 'react'
 import { Edit,Trash } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
-import PieChart from '../components/PieChart'
+import PieChartComponent from '../components/PieChart'
 
 function Home(){
 
@@ -42,8 +42,8 @@ function Home(){
         <div className="border h-[700px] border-slate-900">
             <div className="m-5 h-[610px] p-1">
                 <div className="flex h-1/2">
-                    <div className="border border-slate-500 mr-1 w-1/2">
-                        <PieChart />
+                    <div className="border border-slate-500 mr-1 w-1/2 h-full">
+                        <PieChartComponent className="relative top-2 h-full" expense={expense} />
                     </div>
                     <div className="border border-slate-500 w-1/2">
                         <div>Expense Calculator</div>
