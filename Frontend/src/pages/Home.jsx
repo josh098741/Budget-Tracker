@@ -4,6 +4,7 @@ import { Edit,Trash } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import PieChartComponent from '../components/PieChart'
+import ExpenseCalculator from '../components/ExpenseCalculator'
 
 function Home(){
 
@@ -46,7 +47,7 @@ function Home(){
                         <PieChartComponent className="relative top-2 h-full" expense={expense} />
                     </div>
                     <div className="border border-slate-500 w-1/2">
-                        <div>Expense Calculator</div>
+                        <ExpenseCalculator expense={expense} />
                     </div>
                 </div>
                 <div className="h-1/2 border my-1 border-slate-500 flex flex-wrap">
